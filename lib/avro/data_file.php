@@ -410,7 +410,7 @@ class AvroDataIOWriter
    * @param AvroIODatumWriter $datum_writer
    * @param AvroSchema $writers_schema
    */
-  public function __construct($io, $datum_writer, $writers_schema=null)
+  public function __construct($io, $datum_writer, $writers_schema=null, $meta=array())
   {
     if (!($io instanceof AvroIO))
       throw new AvroDataIOException('io must be instance of AvroIO');
@@ -421,7 +421,7 @@ class AvroDataIOWriter
     $this->buffer = new AvroStringIO();
     $this->buffer_encoder = new AvroIOBinaryEncoder($this->buffer);
     $this->block_count = 0;
-    $this->metadata = array();
+    $this->metadata = $meta;
 
     if ($writers_schema)
     {
@@ -441,6 +441,14 @@ class AvroDataIOWriter
       $this->datum_writer->writers_schema = AvroSchema::parse($schema_from_file);
       $this->seek(0, SEEK_END);
     }
+  }
+  
+  
+  public static function withMeta($io, $datum_writer, $writers_schema=null, $meta)
+  {
+  	$this->metadata = $meta;
+  	$instance = new self();
+  	return $instance;
   }
 
   /**
