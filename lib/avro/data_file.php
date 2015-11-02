@@ -443,13 +443,7 @@ class AvroDataIOWriter
     }
   }
   
-  
-  public static function withMeta($io, $datum_writer, $writers_schema=null, $meta)
-  {
-  	$this->metadata = $meta;
-  	$instance = new self();
-  	return $instance;
-  }
+ 
 
   /**
    * @param mixed $datum
