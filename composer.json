@@ -1,5 +1,5 @@
 {
-  "name": "ckiosidis/avro",
+  "name": "app-verk/avro",
   "description": "A library for using Apache Avro with PHP.",
   "keywords": ["serialization"],
   "homepage": "https://avro.apache.org/",
